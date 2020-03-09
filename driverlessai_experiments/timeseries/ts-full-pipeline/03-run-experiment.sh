@@ -82,9 +82,9 @@ run_experiment(){
 
         # if the experiment.json exists, get experiment key from the json and rename dir to the key
         if [[ -f "${exp_data_dir}/${exp_run_dir_root}/${temp_dir_name}/experiment.json" ]]; then
-            exp_key=$(cat "${exp_data_dir}/${exp_run_dir_root}/${temp_dir_name}/experiment.json" | grep -Po '"key": "\K[a-z]*?(?=",)')
+            exp_key=$(cat "${exp_data_dir}/${exp_run_dir_root}/${temp_dir_name}/experiment.json" | grep  -Po '"key": "\K[0-9a-z-]*?(?=",)' | head -n 1)
             if [[ ! -z "${exp_key}" ]]; then
-                mv "${exp_data_dir}/${exp_run_dir_root}/${temp_dir_name}" "${exp_data_dir}/${exp_run_dir_root}/${exp_key}"
+                f mv "${exp_data_dir}/${exp_run_dir_root}/${temp_dir_name}" "${exp_data_dir}/${exp_run_dir_root}/${exp_key}"
             fi
         fi
 }

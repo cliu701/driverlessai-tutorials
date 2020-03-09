@@ -153,7 +153,7 @@ check_create_condaenv(){
     unzip -v > /dev/null || error_exit "Unzip required, please install unzip."
     # check if scoring-pipeline is already unzipped, if not unzip it
     [[ -d "${exp_run_dir}/scoring-pipeline" ]] || { pushd ${exp_run_dir} > /dev/null && unzip scorer.zip && popd > /dev/null; }
-    conda_env_name=$(grep -P -o 'name: \K([a-z2_]+)' "${exp_run_dir}/scoring-pipeline/environment.yml")
+    conda_env_name=$(grep -P -o 'name: \K([a-z0-9_]+)' "${exp_run_dir}/scoring-pipeline/environment.yml")
     local env_count=$(conda env list | grep "${conda_env_name}" | wc -l)
     if [[ "${env_count}" == 0 ]]; then
         # create conda environment from the yml file
