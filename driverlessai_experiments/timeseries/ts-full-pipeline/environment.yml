@@ -11,4 +11,4 @@ dependencies:
   - matplotlib
   - seaborn
   - tqdm
-  - h2oai_client=1.6.3
+  - h2oai_client=1.8.4.1
